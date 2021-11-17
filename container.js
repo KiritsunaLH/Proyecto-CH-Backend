@@ -29,18 +29,13 @@ class Container {
         }
     }
 
-    async getById(id) {
+    getById(id) {
         const product = this.product.filter( prod => prod.id === id ? prod: null)
         return product.length !== 0 ? product [0] : null
     }
 
-    async getAll() {
-        try {
-            let products = await fs.promises.readFile(`${this.url}`, 'utf-8');
-            return JSON.parse(products)
-        } catch (error) {
-            console.log(error)
-        }
+    getAll() {
+        return this.products
     }
 
     async deleteById(id) {

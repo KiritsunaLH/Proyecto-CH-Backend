@@ -17,4 +17,10 @@
         "price": 6400,
         "img": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/8133/9780813388885.jpg",
     },
+    {
+        "id": 4
+        "title": "The Hobbit",
+        "price": 7300,
+        "img": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/8133/9780813388885.jpg",
+    },
 ]
