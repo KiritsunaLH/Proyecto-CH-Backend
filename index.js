@@ -1,13 +1,47 @@
-let Container = require("./container");
-let container = new Container("products.txt");
+const express = require('express')
+const app = express()
 
-(async ()=> {
-    let new_id = await container.save({
-        "title": "Mastering the Art of War",
-        "price": 2651,
-        "img": "url"
+const PORT = 8080
+const PATH = '/products.txt'
+
+const {Container} = require('./container');
+const container = new Container(PATH)
+
+app.get('/products', async (req, res) => {
+    const data = await container.readFileContainer()
+
+    if (data === undefined) {
+        res.status(420).json({
+            okay: false,
+            msg: 'It failed, too bad'
+        })
+    }
+
+    res.json({
+        okay: true,
+        total: data.length,
+        data
     })
-    
-    let response = await container.getById(new_id)
-    console.log(response);
-})();
+})
+
+app.get('/randomProduct', async (req, res) => {
+    const data = await container.readFileContainer()
+    const rndmProduct = Math.floor(Math.random() * 3)
+    if (data === undefined) {
+        res.status(420).json({
+            okay: false,
+            msg: 'It failed, too bad'
+        })
+    }
+    res.json({
+        okay: true,
+        total: data.length,
+        data: data[randomProduct]
+    })
+})
+
+const server = app.listen(PORT, () => {
+    console.log(`Sv listened in port: ${PORT}`);
+});
+
+module.exports = server;
